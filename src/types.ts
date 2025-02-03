@@ -16,51 +16,51 @@ export class NumType {
     ) {}
 
     /** An unsigned 8-bit integer */
-    static u8 = new NumType(
+    static u8: NumType = new NumType(
         1,
         (b, o, _) => b.readUint8(o),
         (b, v, o, _) => b.writeUint8(v, o)
     );
     /** An unsigned 16-bit integer */
-    static u16 = new NumType(
+    static u16: NumType = new NumType(
         2,
         (b, o, e) => (e ? b.readUint16LE(o) : b.readUint16BE(o)),
         (b, v, o, e) => (e ? b.writeUint16LE(v, o) : b.writeUint16BE(v, o))
     );
     /** An unsigned 32-bit integer */
-    static u32 = new NumType(
+    static u32: NumType = new NumType(
         4,
         (b, o, e) => (e ? b.readUint32LE(o) : b.readUint32BE(o)),
         (b, v, o, e) => (e ? b.writeUint32LE(v, o) : b.writeUint32BE(v, o))
     );
 
     /** A signed 8-bit integer */
-    static i8 = new NumType(
+    static i8: NumType = new NumType(
         1,
         (b, o, _) => b.readInt8(o),
         (b, v, o, _) => b.writeInt8(v, o)
     );
     /** A signed 16-bit integer */
-    static i16 = new NumType(
+    static i16: NumType = new NumType(
         2,
         (b, o, e) => (e ? b.readInt16LE(o) : b.readInt16BE(o)),
         (b, v, o, e) => (e ? b.writeInt16LE(v, o) : b.writeInt16BE(v, o))
     );
     /** A signed 32-bit integer */
-    static i32 = new NumType(
+    static i32: NumType = new NumType(
         4,
         (b, o, e) => (e ? b.readInt32LE(o) : b.readInt32BE(o)),
         (b, v, o, e) => (e ? b.writeInt32LE(v, o) : b.writeInt32BE(v, o))
     );
 
     /** A 32-bit float */
-    static f32 = new NumType(
+    static f32: NumType = new NumType(
         32,
         (b, o, e) => (e ? b.readFloatLE(o) : b.readFloatBE(o)),
         (b, v, o, e) => (e ? b.writeFloatLE(v, o) : b.writeFloatBE(v, o))
     );
     /** A 64-bit float */
-    static f64 = new NumType(
+    static f64: NumType = new NumType(
         64,
         (b, o, e) => (e ? b.readDoubleLE(o) : b.readDoubleBE(o)),
         (b, v, o, e) => (e ? b.writeDoubleLE(v, o) : b.writeDoubleBE(v, o))
