@@ -5,8 +5,8 @@
  *
  * @example
  * ```ts
- * import * as rwbuf from "@";
- * import { f32, f64, i8, u16, u32, u8 } from "./src/root.ts";
+ * import * as rwbuf from "@zerm/rwbuf";
+ * import { f32, f64, i8, u16, u32, u8 } from "@zerm/rwbuf";
  *
  * const myWriter = new rwbuf.Writer();
  * myWriter.write(u8, 0xab);
