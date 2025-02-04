@@ -55,13 +55,13 @@ export class NumType {
 
     /** A 32-bit float */
     static f32: NumType = new NumType(
-        32,
+        4,
         (b, o, e) => (e ? b.readFloatLE(o) : b.readFloatBE(o)),
         (b, v, o, e) => (e ? b.writeFloatLE(v, o) : b.writeFloatBE(v, o))
     );
     /** A 64-bit float */
     static f64: NumType = new NumType(
-        64,
+        8,
         (b, o, e) => (e ? b.readDoubleLE(o) : b.readDoubleBE(o)),
         (b, v, o, e) => (e ? b.writeDoubleLE(v, o) : b.writeDoubleBE(v, o))
     );

@@ -1,6 +1,6 @@
 {
     "name": "@zerm/rwbuf",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "license": "Unlicense",
     "exports": "./src/root.ts",
 
