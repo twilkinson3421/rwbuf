@@ -1,7 +1,7 @@
 {
     "name": "@zerm/rwbuf",
-    "version": "1.0.2",
-    "license": "Unlicense",
+    "version": "1.0.3",
+    "license": "0BSD",
     "exports": "./src/root.ts",
 
     "lint": {

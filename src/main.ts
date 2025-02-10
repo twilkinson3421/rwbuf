@@ -1,5 +1,5 @@
 import { Buffer } from "node:buffer";
-import { type NumType, Endianness } from "./types.ts";
+import { Endianness, type NumType } from "./types.ts";
 
 /** A reader for a byte buffer */
 export class Reader {
@@ -44,6 +44,39 @@ export class Reader {
     readBytesWithLen(lenType: NumType): Buffer {
         const len = this.read(lenType);
         return this.readBytes(len);
+    }
+
+    /**
+     * Reads a string of the given encoding and length. Supports UTF-8 and UTF-16 strings.
+     *
+     * @param glyphType The type of the glyphs in the string
+     * @param length The length of the string. If `nullTerm` is true, this is the maximum length of the string
+     * @param nullTerm Whether the string should be null-terminated. The maximum bytes will still be read.
+     */
+    readUnicodeString(glyphType: NumType, length: number, nullTerm = false): string {
+        if (glyphType.byteSize > 2) throw new Error("Only UTF-8 and UTF-16 strings are supported");
+        const bytes = this.readBytes(length);
+        const str = bytes.toString(glyphType.byteSize > 1 ? "utf-16le" : "utf-8");
+        return nullTerm ? str.replace(/\0+$/, "") : str;
+    }
+
+    /**
+     * Reads a string of the given encoding and length determined by a preceeding number
+     * of the given type. If `nullTerm` is true, the string will be null-terminated.
+     * Supports UTF-8 and UTF-16 strings.
+     *
+     * @param glyphType The type of the glyphs in the string
+     * @param lenType The type of the preceeding length. If `nullTerm` is true, this is the maximum length of the string
+     * @param nullTerm Whether the string should be null-terminated. The maximum bytes will still be read
+     *
+     * @example
+     * ```ts
+     * const name = myReader.readUnicodeStringWithLen(u8, u16, true);
+     * // Reads a UTF-8, null-terminated string of length determined by a u16 preceeding the string
+     * ```
+     */
+    readUnicodeStringWithLen(glyphType: NumType, lenType: NumType, nullTerm = false): string {
+        return this.readUnicodeString(glyphType, this.read(lenType), nullTerm);
     }
 }
 

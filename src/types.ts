@@ -1,5 +1,6 @@
 import type { Buffer } from "node:buffer";
 
+/** A type that can be read from, or written to, a buffer */
 export class NumType {
     constructor(
         /** The number of bytes this type uses */
