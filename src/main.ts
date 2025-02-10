@@ -62,8 +62,7 @@ export class Reader {
 
     /**
      * Reads a string of the given encoding and length determined by a preceeding number
-     * of the given type. If `nullTerm` is true, the string will be null-terminated.
-     * Supports UTF-8 and UTF-16 strings.
+     * of the given type. Supports UTF-8 and UTF-16 strings.
      *
      * @param glyphType The type of the glyphs in the string
      * @param lenType The type of the preceeding length. If `nullTerm` is true, this is the maximum length of the string
