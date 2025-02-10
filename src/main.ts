@@ -50,12 +50,12 @@ export class Reader {
      * Reads a string of the given encoding and length. Supports UTF-8 and UTF-16 strings.
      *
      * @param glyphType The type of the glyphs in the string
-     * @param length The length of the string. If `nullTerm` is true, this is the maximum length of the string
+     * @param length The length of the string (glyphs). If `nullTerm` is true, this is the maximum length of the string
      * @param nullTerm Whether the string should be null-terminated. The maximum bytes will still be read.
      */
     readUnicodeString(glyphType: NumType, length: number, nullTerm = false): string {
         if (glyphType.byteSize > 2) throw new Error("Only UTF-8 and UTF-16 strings are supported");
-        const bytes = this.readBytes(length);
+        const bytes = this.readBytes(length * glyphType.byteSize);
         const str = bytes.toString(glyphType.byteSize > 1 ? "utf-16le" : "utf-8");
         return nullTerm ? str.replace(/\0+$/, "") : str;
     }
